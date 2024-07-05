@@ -16,7 +16,7 @@ public class FileWatcherService {
 
             Path path = Paths.get(DIRECTORY_TO_WATCH);
             path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_MODIFY);
-
+            System.out.println("------> Program Start monitoring directory is : "+DIRECTORY_TO_WATCH);
             WatchKey key;
             while ((key = watchService.take()) != null) {
                 for (WatchEvent<?> event : key.pollEvents()) {
