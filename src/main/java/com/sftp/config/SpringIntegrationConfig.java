@@ -10,6 +10,7 @@ import java.util.Date;
 
 import javax.crypto.SecretKey;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.annotation.InboundChannelAdapter;
@@ -30,11 +31,32 @@ import com.sftp.util.EncryptionUtils;
 @EnableIntegration
 @EnableScheduling
 public class SpringIntegrationConfig {
-
+	
+	
+/*
+	//this class transfer file local folder just for testing.. it can read more than one folder at a time
+	 
 	private volatile File originalFile;
 	private volatile String currentUploadDirectory;
 	private volatile String currentArchiveDirectory;
 	SecretKey secretKey;
+	
+	@Value("${dircetry.parent}")
+	private String parent;
+	
+	@Value("${dircetry.parent.child1}")
+	private String child1;
+	
+	@Value("${dircetry.parent.child2}")
+	private String child2;
+	
+	@Value("${dircetry.parent.child3}")
+	private String child3;
+	
+	@Value("${dircetry.parent.child4}")
+	private String child4;
+	
+	
 	
 
 	@Bean
@@ -51,7 +73,7 @@ public class SpringIntegrationConfig {
 	@InboundChannelAdapter(value = "fileInputChannel", poller = @Poller(fixedDelay = "1000"))
 	public FileReadingMessageSource fileReadingMessageSource1() {
 		FileReadingMessageSource reader = new FileReadingMessageSource();
-		reader.setDirectory(new File("C:\\Users\\dell\\Desktop\\Test\\test1"));
+		reader.setDirectory(new File(parent+child1));
 		return reader;
 	}
 
@@ -59,7 +81,7 @@ public class SpringIntegrationConfig {
 	@InboundChannelAdapter(value = "fileInputChannel", poller = @Poller(fixedDelay = "1000"))
 	public FileReadingMessageSource fileReadingMessageSource2() {
 		FileReadingMessageSource reader = new FileReadingMessageSource();
-		reader.setDirectory(new File("C:\\Users\\dell\\Desktop\\Test\\test2"));
+		reader.setDirectory(new File(parent+child2));
 		return reader;
 	}
 
@@ -67,16 +89,15 @@ public class SpringIntegrationConfig {
 	@InboundChannelAdapter(value = "fileInputChannel", poller = @Poller(fixedDelay = "1000"))
 	public FileReadingMessageSource fileReadingMessageSource3() {
 		FileReadingMessageSource reader = new FileReadingMessageSource();
-		reader.setDirectory(new File("C:\\Users\\dell\\Desktop\\Test\\test3"));
+		reader.setDirectory(new File(parent+child3));
 		return reader;
 	}
 
 	@Bean
 	@InboundChannelAdapter(value = "fileInputChannel", poller = @Poller(fixedDelay = "1000"))
 	public FileReadingMessageSource fileReadingMessageSource4() {
-		System.out.println("-------------- Poller Execute ----------------");
 		FileReadingMessageSource reader = new FileReadingMessageSource();
-		reader.setDirectory(new File("C:\\Users\\dell\\Desktop\\Test\\test4"));
+		reader.setDirectory(new File(parent+child4));
 		System.out.println("local dir" + reader);
 		return reader;
 	}
@@ -136,4 +157,6 @@ public class SpringIntegrationConfig {
 		currentUploadDirectory = "C:\\Users\\dell\\Desktop\\upload\\" + date;
 		currentArchiveDirectory = "C:\\Users\\dell\\Desktop\\Test\\archive\\" + date;
 	}
+	
+	*/
 }
